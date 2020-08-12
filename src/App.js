@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './App.css';
 import Quiz from './components/Quiz';
 import { connect } from 'react-redux';
+import { ActionTypes } from './actions/actionTypes';
 
-const mapStateToProps = state => { return {...state.quiz } };
+const mapStateToProps = state => { return { ...state.quiz } };
 
 const mapDispatchToProps = dispatch => ({
-  onQuizLoad: payload => dispatch({ type: 'QUIZ_LOAD', payload }),
-  onPagerUpdate: payload => dispatch({ type: 'PAGER_UPDATE', payload })
+  onQuizLoad: payload => dispatch({ type: ActionTypes.QuizLoad, payload }),
+  onPagerUpdate: payload => dispatch({ type: ActionTypes.PagerUpdate, payload })
 });
 
 class App extends Component {
   state = {
     quizes: [
       { id: 'data/javascript.json', name: 'Javascript' },
-      { id: 'data/aspnet.json', name: 'Asp.Net' },
-      { id: 'data/csharp.json', name: 'C Sharp' },
+      { id: 'data/superheroes.json', name: 'Superheroes' },
       { id: 'data/designPatterns.json', name: 'Design Patterns' }
     ],
     quizId: 'data/javascript.json'
@@ -26,6 +26,14 @@ class App extends Component {
     size: 1,
     count: 1
   }
+
+  componentDidMount() {
+    this.load(this.state.quizId);
+  }
+
+  // useEffect(() => {
+  //   load(this.state.quizId);
+  // }, [] );
 
   load(quizId) {
     let url = quizId || this.props.quizId;
@@ -46,7 +54,26 @@ class App extends Component {
     this.load(e.target.value);
   }
 
-
+  render() {
+    return (
+      <div className="container">
+        <header className="p-2">
+          <div className="row">
+            <div className="col-6">
+              <h3>Quiz Application</h3>
+            </div>
+            <div className="col-6 text-right">
+              <label className="mr-1">Select Quiz:</label>
+              <select onChange={this.onChange}>
+                {this.state.quizes.map(q => <option key={q.id} value={q.id}>{q.name}</option>)}
+              </select>
+            </div>
+          </div>
+        </header>
+        <Quiz quiz={this.state.quiz} quizId={this.state.quizId} mode={this.state.mode} />
+      </div>
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,38 +1,88 @@
-.App {
+.btn {
+  border-radius: 0;
+}
+
+.btn + .btn {
+  margin-left: 10px;
+}
+
+.option {
+  background-color: #cadaee;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 4px;
+}
+
+.option label {
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+}
+
+#quiz .options input[type=checkbox] {
+  height: 22px;
+  margin-right: 6px;
+  width: 22px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.result-question {
+  background-color: #eee;
+  margin: 4px;
+  padding: 6px;
+}
+
+/* Create Quiz Styles */
+.create-quiz .question {
+  text-align: left;
+}
+
+.create-quiz input[type=text] {
+  border: 1px solid #ddd;
+  width: 95%;
+}
+
+.create-quiz .tb-quiz-name {
+  background-color: #ccffcc;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.create-quiz .tb-desc {
+  background-color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.create-quiz .options > div {
+  margin-left: 20px;
+}
+
+.create-quiz .options input[type=checkbox] {
+  border: 1px solid #262626;
+  display: inline-block;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  width: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  h1, .h1 {
+      font-size: 22px;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  h2, .h2 {
+      font-size: 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  h3, .h3 {
+      font-size: 18px;
+  }
+
+  .option {
+      font-size: 16px;
+      padding: 6px;
   }
 }
